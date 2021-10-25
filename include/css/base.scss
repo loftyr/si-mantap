@@ -1,0 +1,83 @@
+body {
+    padding-right: 0 !important
+}
+
+th.vertical-align-inherit {
+    vertical-align: inherit !important;
+}
+
+// Costum Background Color
+.custom-bg-aside {
+    background-color: #373737 !important;
+
+    a {
+        color: white !important;
+    }
+
+    a.active {
+        background-color: #17a2b8 !important;
+    }
+
+    a:hover {
+        background-color: #048ba0 !important;
+    }
+
+    .user-panel {
+        border-bottom: 1px solid white;
+    }
+
+
+}
+
+.costum-bg-main-header {
+    background-color: #17a2b8 !important;
+
+    a {
+        color: white !important;
+    }
+}
+
+// ========
+
+.costum-hover {
+
+    tbody {
+
+        tr {
+            transition: .3s;
+        }
+
+        tr:hover {
+            background-color: rgba($color: rgb(220, 220, 220), $alpha: 1.0);
+        }
+    }
+}
+
+
+.loading_page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9990;
+    // background-color: rgb(255, 255, 255);
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: rgba(255, 255, 255, .8);
+        border-radius: 50%;
+        box-shadow: 0px 0px 29px 3px rgba(0, 0, 0, 0.46);
+    }
+}
+
+
+// Modal
+//Solved Multiple Modal
+.modal {
+    overflow: auto !important;
+}
