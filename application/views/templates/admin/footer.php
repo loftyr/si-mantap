@@ -47,6 +47,9 @@
 <!-- <script src="<?= base_url('include/admin_lte/js/pages/dashboard.js') ?>"></script> -->
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="<?= base_url('include/admin_lte/js/demo.js') ?>"></script> -->
+<!-- CKeditor -->
+<script src="<?= base_url('include/ckeditor/ckeditor.js') ?>"></script>
+<script src="<?= base_url('include/setckeditor.js') ?>"></script>
 
 <!-- SweetAlert 2 -->
 <script src="<?= base_url('include/sweetalert2/sweetalert2.all.min.js') ?>"></script>
@@ -56,7 +59,7 @@
 <!-- Custom JavaScript -->
 <script src="<?= base_url('include/js/s_base.js') ?>"></script>
 <?php if (@$Js != "") : ?>
-    <script src="<?= base_url('include/js/' . @$Js) ?>"></script>
+    <script src="<?= base_url('include/js/admin/' . @$Js) ?>"></script>
 <?php endif; ?>
 </body>
 

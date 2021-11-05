@@ -29,3 +29,13 @@ function generateCode2($Table, $Code_Name, $Order, $Pemisah)
 
     return $Code = str_pad($Number + 1, 3, "0", STR_PAD_LEFT) . $Pemisah . $Code_Name;
 }
+
+function sessionCheck()
+{
+    $_CI = &get_instance();
+
+    if (!isset($_CI->session->userdata[$_CI->config->item('session_app')])) {
+        $_CI->session->set_flashdata("login_err", "Silahkan Login Terlebih Dahulu");
+        redirect(base_url());
+    }
+}

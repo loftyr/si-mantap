@@ -33,7 +33,7 @@
                         <div class="inner">
                             <h3>20</h3>
 
-                            <p>Total Siswa</p>
+                            <p>Total PNS</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-users"></i>
@@ -52,7 +52,7 @@
                         <div class="inner">
                             <h3>10</h3>
 
-                            <p>Siswa Perempuan</p>
+                            <p>Total PNS perempuan</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-female"></i>
@@ -71,7 +71,7 @@
                         <div class="inner">
                             <h3>10</h3>
 
-                            <p>Siswa Laki-Laki</p>
+                            <p>Total PNS Laki-Laki</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-male"></i>

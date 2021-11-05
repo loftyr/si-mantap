@@ -13,6 +13,8 @@ class Dashboard extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        //Check Session
+        sessionCheck();
     }
 
     public function index()
@@ -23,6 +25,7 @@ class Dashboard extends CI_Controller
         /** Data Menu */
         // $dataheader['Parent']['']   = 'menu-open';
         $dataheader['Dashboard']    = "active";
+        $dataheader["_uri"] = "PortalAdmin";
 
         /** Data Footer */
         $datafooter['Js']       = ""; // Costum JavaScript

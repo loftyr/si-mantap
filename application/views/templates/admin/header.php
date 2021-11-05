@@ -112,7 +112,7 @@
                         <img src="<?= base_url('assets/img/laptop-user.svg') ?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Si MANTAP</a>
+                        <a href="#" class="d-block">SI<b>PASTI</b></a>
                     </div>
                 </div>
 
@@ -121,15 +121,33 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="<?= base_url("Data-Umk-Lurah") ?>" class="nav-link <?= @$Dashboard ?>">
+                            <a href="<?= base_url($_uri . "/Dashboard") ?>" class="nav-link <?= @$Dashboard ?>">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url("Data-Umk-Lurah") ?>" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
+                            <a href="<?= base_url($_uri . "/Data-Pegawai") ?>" class="nav-link <?= @$Data_Pegawai ?>">
+                                <i class="nav-icon fas fa-book"></i>
                                 <p>Data Pegawai</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url($_uri . "/Pegawai-Berkala") ?>" class="nav-link <?= @$Pegawai_Berkala ?>">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>Pegawai Berkala</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url($_uri . "/Pangkat-Pegawai") ?>" class="nav-link <?= @$Pangkat_Pegawai ?>">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>Pangkat Pegawai</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url($_uri . "/Tugas") ?>" class="nav-link <?= @$Tugas ?>">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>Tugas</p>
                             </a>
                         </li>
                     </ul>
