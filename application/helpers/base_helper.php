@@ -39,3 +39,19 @@ function sessionCheck()
         redirect(base_url());
     }
 }
+
+function formatNoHp($No)
+{
+    return substr_replace($No, "+62", 0, 1);
+}
+
+function nip_reform($nip = '')
+{
+
+    $string         = str_replace(" ", "", $nip);
+    $TAHUN_LAHIR    = substr($string, 0, 8);
+    $TMT_PNS        = substr($string, 8, 6);
+    $JENIS_KELAMIN  = substr($string, 14, 1);
+    $URUTAN         = substr($string, 15, 3);
+    return $TAHUN_LAHIR . " " . $TMT_PNS . " " . $JENIS_KELAMIN . " " . $URUTAN;
+}

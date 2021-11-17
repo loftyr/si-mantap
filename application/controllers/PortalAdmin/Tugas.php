@@ -17,6 +17,7 @@ class Tugas extends CI_Controller
         sessionCheck();
         $this->load->model("datatable/m_tbl_base");
         $this->tbl = "tbl_tugas";
+        $this->pegawai = "tbl_data_pegawai";
     }
 
     public function index()
@@ -83,9 +84,11 @@ class Tugas extends CI_Controller
 
             $arr_Tgl = explode(" ", $field->Tgl_End);
 
+            $Judul = '<a href="' . base_url("PortalAdmin/Tugas/Lihat-Upload/" . $field->UID) . '">' . $field->Judul . '</a>';
+
             $no++;
             $row = array();
-            $row[] = $field->Judul;
+            $row[] = $Judul;
             $row[] = $Keterangan;
             $row[] = $File;
             $row[] = mediumdate_indo($arr_Tgl[0]) . " " . $arr_Tgl[1];
@@ -110,8 +113,6 @@ class Tugas extends CI_Controller
         $config['allowed_types']    = '*';
         $config['max_size']         = 50000;
         $config['encrypt_name']     = true;
-
-
 
         $this->upload->initialize($config);
         if (!empty($_FILES['File']['name'])) {
@@ -206,6 +207,95 @@ class Tugas extends CI_Controller
             $result['Data']    = "";
         }
 
+        echo json_encode($result);
+    }
+
+    public function Lihat_Upload($UID = "")
+    {
+        if ($UID == "") {
+            redirect(base_url("PortalAdmin/Tugas"));
+            die;
+        }
+
+        /** Data Header */
+        $dataheader['Judul']    = "Lihat Upload";
+        $dataheader['Css']      = ""; // Costum CSS
+        /** Data Menu */
+        // $dataheader['Parent']['']   = 'menu-open';
+        $dataheader['Tugas']    = "active";
+        $dataheader["_uri"]     = "PortalAdmin";
+
+        /** Data Footer */
+        $datafooter['Js']       = "s_lihat_upload.js"; // Costum JavaScript
+
+        /** Data Content */
+        $datacontent["_uri"]    = "PortalAdmin";
+
+        $this->load->view('templates/admin/header', $dataheader); // Header
+        $this->load->view('pages/admin/v_lihat_upload', $datacontent); // Content
+        $this->load->view('templates/admin/footer', $datafooter); // Footer
+    }
+
+    public function getDataUpload()
+    {
+        $UID = $this->input->post("UID");
+
+        $Select = "*";
+        $Search = ["Nama", "Nip", "", "", "", "No_Hp"];
+        $Where  = [];
+        $Order  = ["Nama" => "ASC"];
+        $list   = $this->m_tbl_base->get_datatables($this->pegawai, $Select, $Search, $Where, $Order);
+        $data   = array();
+        $no     = $_POST['start'];
+        foreach ($list as $field) {
+            $numsUpload = $this->db->get_where("tbl_upload_tugas", ["UID_Tugas" => $UID, 'REPLACE(Nip, " ", "") =' => str_replace(" ", "", $field->Nip)])->num_rows();
+
+            $button = '
+            <div class="btn-group">
+                <button class="btn btn-info btn-sm btnLihat" title="Lihat Data" dataId="' . $UID . '" dataNip="' . $field->Nip . '">
+                    ' . $numsUpload . ' Upload
+                </button>
+            </div>
+            ';
+
+            $no++;
+            $row = array();
+            $row[] = $field->Nama;
+            $row[] = $field->Nip;
+            $row[] = mediumdate_indo($field->Tanggal_Lahir);
+            $row[] = mediumdate_indo($field->Berkala_Terakhir);
+            $row[] = $field->Pangkat . " (" . $field->Pangkat_Terakhir . ")";
+            $row[] = $field->No_Hp;
+            $row[] = $button;
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw"              => $_POST['draw'],
+            "recordsTotal"      => $this->m_tbl_base->count_all($this->pegawai),
+            "recordsFiltered"   => $this->m_tbl_base->count_filtered($this->pegawai, $Search, $Where, $Order),
+            "data"              => $data,
+        );
+
+        echo json_encode($output);
+    }
+
+    public function getUpload()
+    {
+        $UID_Tugas  = $this->input->post("UID_Tugas");
+        $Nip        = $this->input->post("Nip");
+
+        $this->db->select("A.*, B.Nama");
+        $this->db->join("tbl_data_pegawai B", "A.Nip = B.Nip", "LEFT JOIN");
+        $data = $this->db->get_where("tbl_upload_tugas A", [
+            "A.UID_Tugas" => $UID_Tugas,
+            'REPLACE(A.Nip, " ", "") =' => str_replace(" ", "", $Nip)
+        ])->result_array();
+
+        $result['Status']  = false;
+        $result['Pesan']   = $this->db->error()['message'];
+        $result['Data']    = $data;
         echo json_encode($result);
     }
 }

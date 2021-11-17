@@ -24,14 +24,14 @@
             <!-- Content -->
 
             <!-- Small Box (Stat card) -->
-            <h5 class="mb-2 mt-4">Statik Siswa</h5>
+            <h5 class="mb-2 mt-4">Statik Pegawai</h5>
             <div class="row">
                 <!-- Piece Card -->
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>20</h3>
+                            <h3><?= @$Total_PNS ?></h3>
 
                             <p>Total PNS</p>
                         </div>
@@ -50,7 +50,7 @@
                     <!-- small card -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>10</h3>
+                            <h3><?= @$Total_PNS_Wanita ?></h3>
 
                             <p>Total PNS perempuan</p>
                         </div>
@@ -69,7 +69,7 @@
                     <!-- small card -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>10</h3>
+                            <h3><?= @$Total_PNS_Pria ?></h3>
 
                             <p>Total PNS Laki-Laki</p>
                         </div>

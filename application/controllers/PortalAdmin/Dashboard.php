@@ -15,6 +15,7 @@ class Dashboard extends CI_Controller
         parent::__construct();
         //Check Session
         sessionCheck();
+        $this->pegawai = "tbl_data_pegawai";
     }
 
     public function index()
@@ -32,6 +33,9 @@ class Dashboard extends CI_Controller
 
         /** Data Content */
         $datacontent["_uri"] = "PortalAdmin";
+        $datacontent["Total_PNS"] = $this->db->count_all_results($this->pegawai);
+        $datacontent["Total_PNS_Pria"] = $this->db->where(["Jk" => "Laki-Laki"])->count_all_results($this->pegawai);
+        $datacontent["Total_PNS_Wanita"] = $this->db->where(["Jk" => "Perempuan"])->count_all_results($this->pegawai);
 
         $this->load->view('templates/admin/header', $dataheader); // Header
         $this->load->view('pages/admin/v_dashboard', $datacontent); // Content

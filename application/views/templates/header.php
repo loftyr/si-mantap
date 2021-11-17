@@ -102,9 +102,15 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link active">
+                            <a href="javascript:void(0)" class="nav-link <?= @$Tugas ?>">
                                 <i class="nav-icon fas fa-home"></i>
-                                <p>View Tugas</p>
+                                <p>Lihat Tugas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url("Pengumuman") ?>" class="nav-link <?= @$Pengumuman ?>">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>Pengumuman</p>
                             </a>
                         </li>
                     </ul>

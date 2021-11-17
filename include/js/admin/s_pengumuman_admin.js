@@ -1,6 +1,11 @@
-const _url = "Data_Pegawai/";
+const _url = "Pengumuman-Admin/";
 
 var method_1 = "";
+
+// var Keterangan = CKEDITOR.replace('Keterangan', {
+//     exportPdf_tokenUrl: _url + 'getToken',
+//     height: 500
+// });
 
 $('.btnTambah_1').click(function () {
     method_1 = 'Add';
@@ -12,10 +17,11 @@ $('.btnRefresh_1').click(function () {
 });
 
 $(document).ready(function () {
+    setckEditor('Keterangan', $('#form_1').width(), '300');
     //Reset Modal 
     $('#modal_1').on('hidden.bs.modal', function (e) {
         $('#form_1').trigger('reset');
-        $("#Jk").val("").trigger('change');
+        CKEDITOR.instances.Keterangan.setData("");
     });
 
     initTable();
@@ -23,8 +29,12 @@ $(document).ready(function () {
     // Ajax Simpan dan Ubah
     $('#form_1').submit(function (e) {
         e.preventDefault();
-        var formData = $(this).serialize();
+        // var formData = $(this).serialize();
+        var Data = document.querySelector("#form_1"); //For Upload File
+        var arr = new FormData(Data);
         var url;
+
+        arr.append('Keterangan', CKEDITOR.instances.Keterangan.getData());
 
         if (method_1 == 'Add') {
             url = _url + 'saveData/Tambah';
@@ -39,7 +49,9 @@ $(document).ready(function () {
             url: url,
             type: "POST",
             dataType: "JSON",
-            data: formData,
+            data: arr,
+            processData: false,
+            contentType: false,
             success: function (r) {
                 if (r.Status == true) {
                     alertSuccess(r.Pesan);
@@ -66,7 +78,7 @@ $(document).ready(function () {
 
 function initTable() {
     $('#tbl_1 thead th').each(function (e) {
-        var arr = [2, 3, 4, 6];
+        var arr = [1, 2, 3];
         var title = $(this).text();
         if (!isInArray(e, arr)) {
             $(this).html(title + '<input type="text" class="form-control form-control-sm" placeholder ="Search ' + title + '">');
@@ -94,13 +106,13 @@ function initTable() {
             }
         ],
 
-        scrollX: true,
-        fixedColumns: {
-            leftColumns: 0,
-            rightColumns: 1
-        },
+        // scrollX: true,
+        // fixedColumns: {
+        //     leftColumns: 0,
+        //     rightColumns: 1
+        // },
         columnDefs: [{
-            targets: 6,
+            targets: 3,
             className: 'text-center'
         }],
         "language": {
@@ -141,55 +153,75 @@ function initTable() {
             }
         });
     });
+};
 
-    $(document).on('click', '.btnUbah_1', function () {
-        method_1 = 'Edit';
-        var UID = $(this).attr('dataId');
+$(document).on('click', '.btnUbah_1', function () {
+    method_1 = 'Edit';
+    var UID = $(this).attr('dataId');
 
-        // Show Loading
-        showLoad();
+    // Show Loading
+    showLoad();
 
-        $.ajax({
-            url: _url + 'getEdit/',
-            data: { UID: UID },
-            type: "POST",
-            dataType: "JSON",
-            success: function (result) {
-                // Hide Loading
-                hideLoad();
-                $('#modal_1').modal('show');
+    $.ajax({
+        url: _url + 'getEdit',
+        data: { UID: UID },
+        type: "POST",
+        dataType: "JSON",
+        success: function (result) {
+            // Hide Loading
+            hideLoad();
+            $('#modal_1').modal('show');
 
-                var data = result.Data;
-                var Tanggal_Lahir = formatTanggal(data[0].Tanggal_Lahir);
-                var Berkala_Terakhir = formatTanggal(data[0].Berkala_Terakhir);
-                var Pangkat_Terakhir = formatTanggal(data[0].Pangkat_Terakhir);
+            var data = result.Data;
 
-                $('#UID').val(data[0].UID);
-                $('#Nama').val(data[0].Nama);
-                $('#Nip').val(data[0].Nip);
-                $('#val_Tgl_Lahir').val(Tanggal_Lahir);
-                $('#val_Berkala_Terakhir').val(Berkala_Terakhir);
-                $('#val_Pangkat_Terakhir').val(Pangkat_Terakhir);
-                $('#Pangkat').val(data[0].Pangkat);
-                $('#No_Hp').val(data[0].No_Hp);
-                $("#Jk").val(data[0].Jk).trigger('change');
 
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                // Hide Loading
-                hideLoad();
-                alertFailedConfirm('Tidak Diketahui, Hubungin Admin/Programmer !!!');
-            }
-        });
+            $('#UID').val(data[0].UID);
+            $('#Judul').val(data[0].Judul);
+            CKEDITOR.instances.Keterangan.setData(data[0].Keterangan);
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Hide Loading
+            hideLoad();
+            alertFailedConfirm('Tidak Diketahui, Hubungin Admin/Programmer !!!');
+        }
     });
-}
+});
+
+$(document).on('click', '.btnKeterangan', function () {
+    method_1 = 'Edit';
+    var UID = $(this).attr('dataId');
+
+    // Show Loading
+    showLoad();
+
+    $.ajax({
+        url: _url + 'getEdit',
+        data: { UID: UID },
+        type: "POST",
+        dataType: "JSON",
+        success: function (result) {
+            var data = result.Data;
+            // Hide Loading
+            hideLoad();
+            $('#modal_keterangan').modal('show');
+
+            $('.field_keterangan').html(data[0].Keterangan);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Hide Loading
+            hideLoad();
+            alertFailedConfirm('Tidak Diketahui, Hubungin Admin/Programmer !!!');
+        }
+    });
+});
 
 $(document).on('click', '.btnHapus_1', function () {
     var UID = $(this).attr('dataId');
 
     Swal.fire({
-        title: 'Are You Sure?',
-        text: 'Delete This Data !!!',
+        title: 'Apakah anda yakin?',
+        text: 'Menghapus Data ini !!!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

@@ -50,9 +50,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 250px;" data-text="Judul">Judul</th>
+                                <th class="text-center" style="width: 250px;" data-text="Link">Link</th>
                                 <th class="text-center" style="width: 150px;" data-text="Keterangan">Keterangan</th>
-                                <th class="text-center" style="width: 150px;" data-text="File">File</th>
-                                <th class="text-center" style="width: 120px;" data-text="Tanggal Berakhir">Tanggal Berakhir</th>
                                 <th class="text-center" style="width: 80px;">Aksi</th>
                             </tr>
                         </thead>
@@ -88,25 +87,14 @@
                     <input type="hidden" id="UID" name="UID">
                     <div class="callout callout-success">
                         <div class="row">
-                            <div class="col-lg-7">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="Judul">Judul</label>
                                     <input type="text" class="form-control" id="Judul" name="Judul" placeholder="Input Judul">
                                 </div>
                             </div>
 
-                            <div class="col-lg-5">
-                                <div class="form-group">
-                                    <label for="Tgl_End">Tanggal Berakhir</label>
-                                    <div class="input-group date Tanggal_Indo" id="Tgl_End" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" data-target="#Tgl_End" id="val_Tgl_End" name="Tgl_End" data-toggle="datetimepicker" autocomplete="off" required />
-                                        <div class="input-group-append" data-target="#Tgl_End" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                    <small class="form-text text-muted"># dd-mm-yyyy</small>
-                                </div>
-                            </div>
+
                         </div> <!-- End Class row -->
                     </div> <!-- End Class callout -->
 
@@ -119,18 +107,6 @@
                         </div>
                     </div>
 
-                    <div class="callout callout-info">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label for="File">File</label>
-                                    <input type="file" name="File" id="File" class="form-control">
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
                 </form>
             </div>
             <div class="modal-footer justify-content-between">

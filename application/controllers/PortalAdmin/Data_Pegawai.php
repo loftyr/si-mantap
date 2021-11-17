@@ -114,7 +114,8 @@ class Data_Pegawai extends CI_Controller
                 'Berkala_Terakhir'  => formatTanggal($this->input->post('Berkala_Terakhir')),
                 'Pangkat'           => $this->input->post('Pangkat'),
                 'Pangkat_Terakhir'  => formatTanggal($this->input->post('Pangkat_Terakhir')),
-                'No_Hp'             => $this->input->post('No_Hp')
+                'No_Hp'             => $this->input->post('No_Hp'),
+                'Jk'                => $this->input->post('Jk')
             ];
 
             $where  = [

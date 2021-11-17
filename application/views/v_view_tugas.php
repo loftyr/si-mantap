@@ -62,6 +62,20 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid black;"><strong>Upload Tugas</strong></p>
+
+                                    <?php if ($Data[0]["Tgl_End"] >= date("Y-m-d H:i:s")) : ?>
+                                        <button class="btn btn-primary btn-xs btnUploadTugas">Upload Tugas</button>
+                                    <?php else : ?>
+                                        <a href="javascript:void(0)" class="badge badge-secondary">Jadwal Telah Selesai</a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
@@ -97,3 +111,70 @@
         </div>
     </section>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_1" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload Tugas</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_1" enctype="multipart/form-data" method="POST">
+                    <input type="hidden" id="UID" name="UID" value="<?= $Data[0]["UID"] ?>">
+                    <div class="callout callout-success">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="Nip">No Induk Pegawai (NIP)</label>
+                                    <input type="text" class="form-control" id="Nip" name="Nip" placeholder="Input NIP Pegawai">
+                                </div>
+                            </div>
+                        </div> <!-- End Class row -->
+                    </div> <!-- End Class callout -->
+
+                    <div class="callout callout-info">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="Keterangan">Keterangan</label>
+                                    <textarea class="form-control" rows="2" id="Keterangan" name="Keterangan" placeholder="Enter ..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="Lampiran">Lampiran</label>
+                                    <input type="File" name="Lampiran" id="Lampiran" class="form-control">
+                                    <span class="text-muted">MAX Lampiran 10MB. Lampiran berbentuk PDF / Dokumen Office</span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning progress-bar-striped" id="progress_upload" role="progressbar" aria-valuenow="0" aria-valuemin="" aria-valuemax="100" style="width: 0%;">
+                                        0%
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+                <button type="submit" class="btn btn-primary btnSimpan_1" form="form_1"><i class="fas fa-save"></i> Simpan</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

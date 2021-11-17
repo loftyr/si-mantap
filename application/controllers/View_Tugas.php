@@ -14,6 +14,8 @@ class View_Tugas extends CI_Controller
     {
         parent::__construct();
         $this->tbl = "tbl_tugas";
+        $this->tbl_upload = "tbl_upload_tugas";
+        $this->pegawai = "tbl_data_pegawai";
     }
 
     public function index($UID = "")
@@ -27,7 +29,7 @@ class View_Tugas extends CI_Controller
         $dataheader["_uri"]     = "";
 
         /** Data Footer */
-        $datafooter['Js']       = ""; // Costum JavaScript
+        $datafooter['Js']       = "s_view_tugas.js"; // Costum JavaScript
 
         /** Data Content */
         $datacontent["_uri"]    = "";
@@ -50,5 +52,66 @@ class View_Tugas extends CI_Controller
         $this->load->view('templates/header', $dataheader); // Header
         $this->load->view('v_view_tugas', $datacontent); // Content
         $this->load->view('templates/footer', $datafooter); // Footer
+    }
+
+    public function saveData($Method)
+    {
+        // Check NIP
+        $NIP = str_replace(" ", "", $this->input->post("Nip"));
+
+        $arrData = $this->db->get_where($this->pegawai, ['REPLACE(Nip, " ", "") =' => $NIP])->result_array();
+
+        if (!$arrData) {
+            $result['Status']  = false;
+            $result['Pesan']   = "Nomor Induk Pegawai (NIP) Tidak Ditemukan/ Tidak Terdaftar";
+            $result['Data']    = "";
+            echo json_encode($result);
+            die;
+        }
+
+        $config['upload_path']      = '././FileTugas/';
+        $config['allowed_types']    = 'jpeg|jpg|pdf|docx|xls|xlsx';
+        $config['max_size']         = 10000;
+        $config['encrypt_name']     = true;
+
+        $this->upload->initialize($config);
+
+        if (!empty($_FILES['Lampiran']['name'])) {
+            if (!$this->upload->do_upload("Lampiran")) {
+                $result['Status']  = false;
+                $result['Pesan']   = $this->upload->display_errors();
+                $result['Data']    = "";
+                echo json_encode($result);
+                die;
+            } else {
+                $dataimage  = array('upload_data' => $this->upload->data());
+                $filename  = $dataimage['upload_data']['file_name'];
+
+                $data = [
+                    'Nip'               => nip_reform($this->input->post("Nip")),
+                    'Keterangan'        => $this->input->post("Keterangan"),
+                    'Lampiran'          => $filename,
+                    'Create_at'         => date("Y-m-d H:i:s")
+                ];
+
+                $query = $this->m_base->saveData($this->tbl_upload, $data);
+
+                if ($query == true) {
+                    $result['Status']  = true;
+                    $result['Pesan']   = "Sukses Mengirim Tugas";
+                    $result['Data']    = "";
+                } else {
+                    $result['Status']  = false;
+                    $result['Pesan']   = $this->db->error()['message'];
+                    $result['Data']    = "";
+                }
+            }
+        } else {
+            $result['Status']  = false;
+            $result['Pesan']   = "Gagal Upload, File Tidak Ditemukan";
+            $result['Data']    = "";
+        }
+
+        echo json_encode($result);
     }
 }

@@ -57,7 +57,7 @@ class Pegawai_Berkala extends CI_Controller
             if ($field->Delay <= 90) {
                 $button = '
                     <div class="btn-group">
-                        <a class="" target="_blank" href="https://wa.me/' . $field->No_Hp . '">Chat Now</a>
+                        <a class="" target="_blank" href="https://wa.me/' . formatNoHp($field->No_Hp) . '">Chat Now</a>
                     </div>
                 ';
             } else {

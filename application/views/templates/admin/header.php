@@ -145,9 +145,21 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= base_url($_uri . "/Pensiun") ?>" class="nav-link <?= @$Pensiun ?>">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>Pensiun</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= base_url($_uri . "/Tugas") ?>" class="nav-link <?= @$Tugas ?>">
                                 <i class="nav-icon fas fa-file-alt"></i>
                                 <p>Tugas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url($_uri . "/Pengumuman-Admin") ?>" class="nav-link <?= @$Pengumuman ?>">
+                                <i class="nav-icon fas fa-flag"></i>
+                                <p>Pengumuman</p>
                             </a>
                         </li>
                     </ul>

@@ -26,34 +26,35 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-primary btn-sm btnTambah_1">
-                        <i class="fas fa-plus"></i> Tambah <?= @$Judul ?>
-                    </button>
                     <button class="btn btn-info btn-sm btnRefresh_1">
                         <i class="fas fa-sync-alt"></i>
                     </button>
                 </div>
                 <div class="card-body">
                     <!--  -->
-                    <!-- <div class="row">
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label>Sektor Usaha</label>
-                                <select class="form-control select2" style="width: 100%;" id="filterKelurahan" name="filterKelurahan" required>
-                                    <option selected="selected" value="">Semua</option>
-                                </select>
+                    <div class="callout callout-success">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Status Pensiun</label>
+                                    <select class="form-control select2" style="width: 100%;" id="filterStatus" name="filterStatus" required>
+                                        <option selected="selected" value="">Semua</option>
+                                        <option value="<=450">Sudah Mendekati (<= 15 Bulan)</option>
+                                        <option value=">450">Belum Mendekati (> 15 Bulan)</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <!--  -->
                     <table id="tbl_1" class="table table-bordered costum-hover">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 250px;" data-text="Nama">Nama</th>
                                 <th class="text-center" style="width: 200px;" data-text="Nip">NIP</th>
-                                <th class="text-center" style="width: 150px;" data-text="Tanggal Lahir">Tanggal Lahir</th>
-                                <th class="text-center" style="width: 150px;" data-text="Berkala Terakhir">Berkala Terakhir</th>
-                                <th class="text-center" style="width: 200px;" data-text="Pangkat Terakhir">Pangkat Terakhir</th>
+                                <th class="text-center" style="width: 200px;" data-text="Berkala Terakhir">Berkala Terakhir</th>
+                                <th class="text-center" style="width: 200px;" data-text="Berkala Berikutnya">Berkala Berikutnya</th>
+                                <th class="text-center" style="width: 80px;" data-text="Delay">Delay (Bulan)</th>
                                 <th class="text-center" style="width: 150px;" data-text="No. Hp">No. Hp</th>
                                 <th class="text-center" style="width: 80px;">Aksi</th>
                             </tr>
@@ -107,16 +108,6 @@
                                 <div class="form-group">
                                     <label for="No_Hp">No. Hp</label>
                                     <input type="text" class="form-control" id="No_Hp" name="No_Hp" placeholder="Input No. Hp" required>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label>Jenis Kelamin</label>
-                                    <select class="form-control select2" style="width: 100%;" id="Jk" name="Jk" required>
-                                        <option selected="selected" value="">Pilih Jenis Kelamin</option>
-                                        <option value="Laki-Laki">Laki-Laki</option>
-                                        <option value="Perempuan">Perempuan</option>
-                                    </select>
                                 </div>
                             </div>
                         </div> <!-- End Class row -->
