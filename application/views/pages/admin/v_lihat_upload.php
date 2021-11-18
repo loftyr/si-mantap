@@ -87,6 +87,7 @@
                 <table class="table" id="tbl_2">
                     <thead>
                         <tr>
+                            <th>Tanggal Upload</th>
                             <th>Nip</th>
                             <th>Nama</th>
                             <th>File</th>

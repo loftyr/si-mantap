@@ -88,6 +88,7 @@ class View_Tugas extends CI_Controller
                 $filename  = $dataimage['upload_data']['file_name'];
 
                 $data = [
+                    'UID_Tugas'         => $this->input->post("UID"),
                     'Nip'               => nip_reform($this->input->post("Nip")),
                     'Keterangan'        => $this->input->post("Keterangan"),
                     'Lampiran'          => $filename,

@@ -119,21 +119,28 @@ $(document).on('click', '.btnLihat', function () {
     });
 });
 
-function draw_data(result) {
-    var leng = result.length;
+function draw_data(res) {
+    // reset 
+    $('#body_tbl_2').html("");
+
+    let leng = res.length;
+
+    console.log(leng);
     if (leng > 0) {
         for (i = 0; i < leng; i++) {
             var output = '<tr class="row-table">';
-            output += '<td>' + result[i].Nip + '</td>';
-            output += '<td>' + result[i].Nama + '</td>';
-            output += '<td><a href="../../../FileTugas/' + result[i].Lampiran + '" target="_blank">URL File</a></td>';
+            output += '<td>' + res[i].Create_at + '</td>';
+            output += '<td>' + res[i].Nip + '</td>';
+            output += '<td>' + res[i].Nama + '</td>';
+            output += '<td><a href="../../../FileTugas/' + res[i].Lampiran + '" target="_blank">URL File</a></td>';
             output += '</tr>';
+            $('#body_tbl_2').append(output);
         }
     } else {
         var output = '<tr class="row-table">';
         output += '<td colspan="3">Data Kosong</td>';
         output += '</tr>';
+        $('#body_tbl_2').append(output);
     }
-    $('#body_tbl_2').append(output);
 
 }
