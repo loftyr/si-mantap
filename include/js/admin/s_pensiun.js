@@ -89,7 +89,7 @@ function initTable() {
             $('.dataTables_filter input').addClass('d-none');
         },
         createdRow: function (row, data, index) {
-            if (data[4] <= 90) {
+            if (data[4] <= 450) {
                 $('td', row).addClass('text-red'); // 6 is index of column
             }
         }

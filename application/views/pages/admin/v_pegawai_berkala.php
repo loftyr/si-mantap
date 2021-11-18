@@ -39,8 +39,8 @@
                                     <label>Status Berkala</label>
                                     <select class="form-control select2" style="width: 100%;" id="filterStatus" name="filterStatus" required>
                                         <option selected="selected" value="">Semua</option>
-                                        <option value="<=90">Sudah Mendekati (<= 90 Hari)</option>
-                                        <option value=">90">Belum Mendekati (> 90 Hari)</option>
+                                        <option value="<=180">Sudah Mendekati (<= 6 Bulan)</option>
+                                        <option value=">180">Belum Mendekati (> 6 Bulan)</option>
                                     </select>
                                 </div>
                             </div>
