@@ -87,7 +87,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('portaladmin/Dashboard/out') ?>">
+                    <a class="nav-link" href="<?= base_url('PortalAdmin/Dashboard/out') ?>">
                         Logout
                     </a>
                 </li>
