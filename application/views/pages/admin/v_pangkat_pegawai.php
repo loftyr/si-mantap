@@ -39,8 +39,8 @@
                                     <label>Status Pangkat</label>
                                     <select class="form-control select2" style="width: 100%;" id="filterStatus" name="filterStatus" required>
                                         <option selected="selected" value="">Semua</option>
-                                        <option value="<=90">Sudah Mendekati (<= 90 Hari)</option>
-                                        <option value=">90">Belum Mendekati (> 90 Hari)</option>
+                                        <option value="<=180">Sudah Mendekati (<= 6 Bulan)</option>
+                                        <option value=">180">Belum Mendekati (> 6 Bulan)</option>
                                     </select>
                                 </div>
                             </div>
@@ -52,8 +52,8 @@
                             <tr>
                                 <th class="text-center" style="width: 250px;" data-text="Nama">Nama</th>
                                 <th class="text-center" style="width: 200px;" data-text="Nip">NIP</th>
-                                <th class="text-center" style="width: 200px;" data-text="Berkala Terakhir">Berkala Terakhir</th>
-                                <th class="text-center" style="width: 200px;" data-text="Berkala Berikutnya">Berkala Berikutnya</th>
+                                <th class="text-center" style="width: 200px;" data-text="Pangkat Terakhir">Pangkat Terakhir</th>
+                                <th class="text-center" style="width: 200px;" data-text="Pangkat Berikutnya">Pangkat Berikutnya</th>
                                 <th class="text-center" style="width: 80px;" data-text="Delay">Delay (Hari)</th>
                                 <th class="text-center" style="width: 150px;" data-text="No. Hp">No. Hp</th>
                                 <th class="text-center" style="width: 80px;">Aksi</th>

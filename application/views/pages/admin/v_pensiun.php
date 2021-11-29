@@ -52,8 +52,8 @@
                             <tr>
                                 <th class="text-center" style="width: 250px;" data-text="Nama">Nama</th>
                                 <th class="text-center" style="width: 200px;" data-text="Nip">NIP</th>
-                                <th class="text-center" style="width: 200px;" data-text="Berkala Terakhir">Berkala Terakhir</th>
-                                <th class="text-center" style="width: 200px;" data-text="Berkala Berikutnya">Berkala Berikutnya</th>
+                                <th class="text-center" style="width: 200px;" data-text="Tanggal Lahir">Tanggal Lahir</th>
+                                <th class="text-center" style="width: 200px;" data-text="Tanggal Pensiun">Tanggal Pensiun</th>
                                 <th class="text-center" style="width: 80px;" data-text="Delay">Delay (Bulan)</th>
                                 <th class="text-center" style="width: 150px;" data-text="No. Hp">No. Hp</th>
                                 <th class="text-center" style="width: 80px;">Aksi</th>

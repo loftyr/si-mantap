@@ -54,7 +54,7 @@ class Pangkat_Pegawai extends CI_Controller
         $no     = $_POST['start'];
         foreach ($list as $field) {
 
-            if ($field->Delay <= 90) {
+            if ($field->Delay <= 180) {
                 $button = '
                     <div class="btn-group">
                         <a class="" target="_blank" href="https://wa.me/' . formatNoHp($field->No_Hp) . '">Chat Now</a>
