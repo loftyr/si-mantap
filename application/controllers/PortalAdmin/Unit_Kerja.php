@@ -1,56 +1,54 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Data_Pegawai extends CI_Controller
+class Unit_Kerja extends CI_Controller
 {
 
     /**
-     *Create By : Ai
-     *Tanggal   : 25-Oktober-2021
+     *Create By : Lofty Razani
+     *Tanggal   : 24-Maret-2021
      *
      */
 
     function __construct()
     {
         parent::__construct();
-        //Check Session
+        //
         sessionCheck();
-        $this->load->model("datatable/m_tbl_base");
-        $this->load->model("datatable/m_tbl_pegawai", "dt_pegawai");
-        $this->tbl = "tbl_data_pegawai";
+        $this->load->model('datatable/m_tbl_base');
+        $this->tbl          = "tbl_unit_kerja";
     }
 
     public function index()
     {
         /** Data Header */
-        $dataheader['Judul']    = "Pegawai";
+        $dataheader['Judul']    = "Unit Kerja";
         $dataheader['Css']      = ""; // Costum CSS
         /** Data Menu */
         // $dataheader['Parent']['']   = 'menu-open';
-        $dataheader['Data_Pegawai']     = "active";
+        $dataheader['Unit']     = "active";
         $dataheader["_uri"] = "PortalAdmin";
 
         /** Data Footer */
-        $datafooter['Js']       = "s_data_pegawai.js"; // Costum JavaScript
+        $datafooter['Js']       = "s_unit_kerja.js"; // Costum JavaScript
 
         /** Data Content */
-        $datacontent["_uri"]    = "PortalAdmin";
-        $datacontent["Unit"]    = $this->db->order_by("Kd_Unit", "ASC")->get("tbl_unit_kerja")->result_array();
-        $datacontent["Jabatan"] = $this->db->order_by("Kd_Jabatan", "ASC")->get("tbl_jabatan")->result_array();
+        $datacontent["_uri"] = "PortalAdmin";
 
         $this->load->view('templates/admin/header', $dataheader); // Header
-        $this->load->view('pages/admin/v_data_pegawai', $datacontent); // Content
+        $this->load->view('pages/admin/v_unit_kerja', $datacontent); // Content
         $this->load->view('templates/admin/footer', $datafooter); // Footer
     }
 
     public function getData()
     {
-        $Search = [];
-
-        $list   = $this->dt_pegawai->get_datatables($Search);
+        $Select = "*";
+        $Search = ["Kd_Unit", "Nama", "Keterangan"];
+        $Where  = ["Delete_at" => NULL];
+        $Order  = ["Kd_Unit" => "ASC"];
+        $list   = $this->m_tbl_base->get_datatables($this->tbl, $Select, $Search, $Where, $Order);
+        $data   = array();
         $no     = $_POST['start'];
-
-        $data   = [];
         foreach ($list as $field) {
             $button = '
             <div class="btn-group">
@@ -65,15 +63,9 @@ class Data_Pegawai extends CI_Controller
 
             $no++;
             $row = array();
+            $row[] = $field->Kd_Unit;
             $row[] = $field->Nama;
-            $row[] = $field->Nip;
-            $row[] = mediumdate_indo($field->Tanggal_Lahir);
-            $row[] = $field->Jk;
-            $row[] = mediumdate_indo($field->Berkala_Terakhir);
-            $row[] = $field->Pangkat . " (" . $field->Pangkat_Terakhir . ")";
-            $row[] = $field->No_Hp;
-            $row[] = $field->Unit_Kerja;
-            $row[] = $field->Jabatan;
+            $row[] = $field->Keterangan;
             $row[] = $button;
 
             $data[] = $row;
@@ -81,8 +73,8 @@ class Data_Pegawai extends CI_Controller
 
         $output = array(
             "draw"              => $_POST['draw'],
-            "recordsTotal"      => $this->dt_pegawai->count_all(),
-            "recordsFiltered"   => $this->dt_pegawai->count_filtered($Search),
+            "recordsTotal"      => $this->m_tbl_base->count_all($this->tbl),
+            "recordsFiltered"   => $this->m_tbl_base->count_filtered($this->tbl, $Search, $Where, $Order),
             "data"              => $data,
         );
 
@@ -91,7 +83,7 @@ class Data_Pegawai extends CI_Controller
 
     public function getEdit()
     {
-        $UID    = $this->input->post('UID');
+        $UID     = $this->input->post('Id');
         $query  = $this->db->get_where($this->tbl, ['UID' => $UID])->result_array();
 
         $result['Status']  = true;
@@ -103,8 +95,8 @@ class Data_Pegawai extends CI_Controller
 
     public function saveData($Method)
     {
-        $this->form_validation->set_rules('Nama', 'Nama Pegawai', 'required');
-        $this->form_validation->set_rules('Nip', 'Nip Pegawai', 'required|trim');
+        $this->form_validation->set_rules('Kd_Unit', 'Kode Unit', 'required|trim');
+        $this->form_validation->set_rules('Nama_Unit', 'Nama Unit', 'required');
 
         if ($this->form_validation->run() == false) {
             $result['Status']  = false;
@@ -113,28 +105,18 @@ class Data_Pegawai extends CI_Controller
         } else {
 
             $data   = [
-                'Nama'              => $this->input->post('Nama'),
-                'Nip'               => $this->input->post('Nip'),
-                'Tanggal_Lahir'     => formatTanggal($this->input->post('Tgl_Lahir')),
-                'Berkala_Terakhir'  => formatTanggal($this->input->post('Berkala_Terakhir')),
-                'Pangkat'           => $this->input->post('Pangkat'),
-                'Pangkat_Terakhir'  => formatTanggal($this->input->post('Pangkat_Terakhir')),
-                'No_Hp'             => $this->input->post('No_Hp'),
-                'Jk'                => $this->input->post('Jk'),
-                'Kd_Unit'           => $this->input->post('Unit_Kerja'),
-                'Kd_Jabatan'        => $this->input->post('Jabatan')
+                'Kd_Unit'    => $this->input->post('Kd_Unit'),
+                'Nama'  => $this->input->post('Nama_Unit'),
+                'Keterangan'    => $this->input->post('Keterangan')
             ];
 
             $where  = [
-                'UID'    => $this->input->post('UID')
+                'UID'    => $this->input->post('Id')
             ];
 
             // Execute Query
             if ($Method == "Tambah") {
-                $data2 = [
-                    //'User_Input'    => $this->session->userdata[$this->config->item('session_app')]['Nama'],
-                    'Create_at'     => date('Y-m-d H:i:s')
-                ];
+                $data2 = [];
 
                 //Execute Save New Data
                 $query = $this->m_base->saveData($this->tbl, array_merge($data, $data2));
@@ -169,9 +151,9 @@ class Data_Pegawai extends CI_Controller
 
     public function deleteData()
     {
-        $UID = $this->input->post('UID');
+        $UID = $this->input->post('Id');
 
-        $query  = $this->m_base->deleteData($this->tbl, ["UID" => $UID]);
+        $query  = $this->m_base->saveEdit($this->tbl, ["Delete_at" => date('Y-m-d H:i:s')], ["UID" => $UID]);
 
         if ($query == true) {
             $result['Status']  = true;
@@ -182,6 +164,17 @@ class Data_Pegawai extends CI_Controller
             $result['Pesan']   = $this->db->error()['message'];
             $result['Data']    = "";
         }
+
+        echo json_encode($result);
+    }
+
+    public function generateCode()
+    {
+        $Code = generateCode($this->tbl, "UNIT", "UID");
+
+        $result['Status']  = true;
+        $result['Pesan']   = "Code Success";
+        $result['Data']    = $Code;
 
         echo json_encode($result);
     }

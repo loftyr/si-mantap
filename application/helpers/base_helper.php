@@ -10,7 +10,7 @@ function generateCode($Table, $Code_Name, $Order)
 
     $_data = $_CI->db->get($Table)->result_array();
 
-    $Number = (@$_data[0]["Id"] != null || isset($_data[0]["Id"])) ? $_data[0]["Id"] : 0;
+    $Number = (@$_data[0]["UID"] != null || isset($_data[0]["UID"])) ? $_data[0]["UID"] : 0;
 
     return $Code = $Code_Name . "-" . str_pad($Number + 1, 3, "0", STR_PAD_LEFT);
 }

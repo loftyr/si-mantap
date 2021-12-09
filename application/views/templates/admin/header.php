@@ -109,7 +109,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?= base_url('assets/img/laptop-user.svg') ?>" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?= base_url('assets/img/logo.png') ?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">SI<b>PASTI</b></a>
@@ -124,6 +124,18 @@
                             <a href="<?= base_url($_uri . "/Dashboard") ?>" class="nav-link <?= @$Dashboard ?>">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url($_uri . "/Jabatan") ?>" class="nav-link <?= @$Jabatan ?>">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>Jabatan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url($_uri . "/Unit-Kerja") ?>" class="nav-link <?= @$Unit ?>">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>Unit Kerja</p>
                             </a>
                         </li>
                         <li class="nav-item">

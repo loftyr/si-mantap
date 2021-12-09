@@ -1,13 +1,28 @@
-const _url = "Data_Pegawai/";
-
-var method_1 = "";
+const _url = "Jabatan/";
 
 $('.btnTambah_1').click(function () {
     method_1 = 'Add';
-    $('#modal_1').modal("show");
+
+    $.ajax({
+        url: _url + 'generateCode/',
+        type: "POST",
+        dataType: "JSON",
+        success: function (result) {
+            // Hide Loading
+            hideLoad();
+            $("#Kd_Jabatan").val(result.Data);
+
+            $('#modal_1').modal("show");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Hide Loading
+            hideLoad();
+            alertFailedConfirm('Tidak Diketahui, Hubungin Admin/Programmer !!!');
+        }
+    });
 });
 
-$('.btnRefresh_1').click(function () {
+$(document).on('click', '.btnRefresh_1', function () {
     $('#tbl_1').DataTable().ajax.reload();
 });
 
@@ -15,11 +30,9 @@ $(document).ready(function () {
     //Reset Modal 
     $('#modal_1').on('hidden.bs.modal', function (e) {
         $('#form_1').trigger('reset');
-        $("#Jk").val("").trigger('change');
-        $("#Unit_Kerja").val("").trigger('change');
-        $("#Jabatan").val("").trigger('change');
     });
 
+    //Init Table
     initTable();
 
     // Ajax Simpan dan Ubah
@@ -64,28 +77,15 @@ $(document).ready(function () {
         });
     });
     // Akhir Ajax
-
-    //Init Filter
-    initFilter();
-
 });
 
-function initFilter() {
-    // Ger URL Param
-    var url_string = new URL(window.location.href); //window.location.href
-    var Jk = url_string.searchParams.get("Jk");
-    // var Jk = url_string.searchParams.get("Jk");
-    // console.log(Jk);
-
-    if (Jk) $("[placeholder='Search Jenis Kelamin']").val(Jk).keyup();
-}
 
 function initTable() {
     $('#tbl_1 thead th').each(function (e) {
-        var arr = [2, 4, 5, 9];
+        var arr = [2, 3];
         var title = $(this).text();
         if (!isInArray(e, arr)) {
-            $(this).html(title + '<input type="text" class="form-control form-control-sm" placeholder="Search ' + title + '">');
+            $(this).html(title + '<input type="text" class="form-control form-control-sm" placeholder ="Search ' + title + '">');
         } else {
             $(this).addClass("vertical-align-inherit");
         }
@@ -110,13 +110,13 @@ function initTable() {
             }
         ],
 
-        scrollX: true,
-        fixedColumns: {
-            leftColumns: 0,
-            rightColumns: 1
-        },
+        // scrollX: true,
+        // fixedColumns: {
+        //     leftColumns: 0,
+        //     rightColumns: 1
+        // },
         columnDefs: [{
-            targets: 9,
+            targets: 3,
             className: 'text-center'
         }],
         "language": {
@@ -157,53 +157,44 @@ function initTable() {
             }
         });
     });
-
-    $(document).on('click', '.btnUbah_1', function () {
-        method_1 = 'Edit';
-        var UID = $(this).attr('dataId');
-
-        // Show Loading
-        showLoad();
-
-        $.ajax({
-            url: _url + 'getEdit/',
-            data: { UID: UID },
-            type: "POST",
-            dataType: "JSON",
-            success: function (result) {
-                // Hide Loading
-                hideLoad();
-                $('#modal_1').modal('show');
-
-                var data = result.Data;
-                var Tanggal_Lahir = formatTanggal(data[0].Tanggal_Lahir);
-                var Berkala_Terakhir = formatTanggal(data[0].Berkala_Terakhir);
-                var Pangkat_Terakhir = formatTanggal(data[0].Pangkat_Terakhir);
-
-                $('#UID').val(data[0].UID);
-                $('#Nama').val(data[0].Nama);
-                $('#Nip').val(data[0].Nip);
-                $('#val_Tgl_Lahir').val(Tanggal_Lahir);
-                $('#val_Berkala_Terakhir').val(Berkala_Terakhir);
-                $('#val_Pangkat_Terakhir').val(Pangkat_Terakhir);
-                $('#Pangkat').val(data[0].Pangkat);
-                $('#No_Hp').val(data[0].No_Hp);
-                $("#Jk").val(data[0].Jk).trigger('change');
-                $("#Unit_Kerja").val(data[0].Kd_Unit).trigger('change');
-                $("#Jabatan").val(data[0].Kd_Jabatan).trigger('change');
-
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                // Hide Loading
-                hideLoad();
-                alertFailedConfirm('Tidak Diketahui, Hubungin Admin/Programmer !!!');
-            }
-        });
-    });
 }
 
+
+$(document).on('click', '.btnUbah_1', function () {
+    method_1 = 'Edit';
+    var Id = $(this).attr('dataId');
+
+    // Show Loading
+    showLoad();
+
+    $.ajax({
+        url: _url + 'getEdit/',
+        data: { Id: Id },
+        type: "POST",
+        dataType: "JSON",
+        success: function (result) {
+            // Hide Loading
+            hideLoad();
+            $('#modal_1').modal('show');
+
+            var data = result.Data;
+
+            $('#Id').val(data[0].UID);
+            $('#Kd_Jabatan').val(data[0].Kd_Jabatan);
+            $('#Nama_Jabatan').val(data[0].Nama);
+            $('#Keterangan').val(data[0].Keterangan);
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Hide Loading
+            hideLoad();
+            alertFailedConfirm('Tidak Diketahui, Hubungin Admin/Programmer !!!');
+        }
+    });
+});
+
 $(document).on('click', '.btnHapus_1', function () {
-    var UID = $(this).attr('dataId');
+    var Id = $(this).attr('dataId');
 
     Swal.fire({
         title: 'Are You Sure?',
@@ -217,7 +208,7 @@ $(document).on('click', '.btnHapus_1', function () {
         if (result.value) {
             $.ajax({
                 url: _url + 'deleteData',
-                data: { UID: UID },
+                data: { Id: Id },
                 type: "POST",
                 dataType: "JSON",
                 success: function (r) {

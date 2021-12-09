@@ -52,9 +52,12 @@
                                 <th class="text-center" style="width: 250px;" data-text="Nama">Nama</th>
                                 <th class="text-center" style="width: 200px;" data-text="Nip">NIP</th>
                                 <th class="text-center" style="width: 150px;" data-text="Tanggal Lahir">Tanggal Lahir</th>
+                                <th class="text-center" style="width: 150px;" data-text="Jenis Kelamin">Jenis Kelamin</th>
                                 <th class="text-center" style="width: 150px;" data-text="Berkala Terakhir">Berkala Terakhir</th>
                                 <th class="text-center" style="width: 200px;" data-text="Pangkat Terakhir">Pangkat Terakhir</th>
                                 <th class="text-center" style="width: 150px;" data-text="No. Hp">No. Hp</th>
+                                <th class="text-center" style="width: 150px;" data-text="Unit Kerja">Unit Kerja</th>
+                                <th class="text-center" style="width: 150px;" data-text="Jabatan">Jabatan</th>
                                 <th class="text-center" style="width: 80px;">Aksi</th>
                             </tr>
                         </thead>
@@ -173,6 +176,35 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--  -->
+                    <div class="callout callout-success">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Unit Kerja</label>
+                                    <select class="form-control select2" style="width: 100%;" id="Unit_Kerja" name="Unit_Kerja">
+                                        <option selected="selected" value="">Tidak ada</option>
+                                        <?php foreach ($Unit as $un) : ?>
+                                            <option value="<?= $un["Kd_Unit"] ?>"><?= $un["Nama"] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Jabatan</label>
+                                    <select class="form-control select2" style="width: 100%;" id="Jabatan" name="Jabatan">
+                                        <option selected="selected" value="">Tidak ada</option>
+                                        <?php foreach ($Jabatan as $jab) : ?>
+                                            <option value="<?= $jab["Kd_Jabatan"] ?>"><?= $jab["Nama"] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
                 </form>
             </div>
             <div class="modal-footer justify-content-between">

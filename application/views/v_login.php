@@ -23,7 +23,8 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="<?= base_url() ?>">SI<b>PASTI</b></a>
+            <!-- <a href="<?= base_url() ?>">SI<b>PASTI</b></a> -->
+            <img width="200" src="<?= base_url("assets/img/logo.png") ?>" alt="">
         </div>
         <!-- /.login-logo -->
         <div class="card">

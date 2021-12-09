@@ -36,6 +36,8 @@ class Dashboard extends CI_Controller
         $datacontent["Total_PNS"] = $this->db->count_all_results($this->pegawai);
         $datacontent["Total_PNS_Pria"] = $this->db->where(["Jk" => "Laki-Laki"])->count_all_results($this->pegawai);
         $datacontent["Total_PNS_Wanita"] = $this->db->where(["Jk" => "Perempuan"])->count_all_results($this->pegawai);
+        $datacontent["Total_Peg_Jab"] = $this->db->where(["Kd_Jabatan !=" => NULL])->count_all_results($this->pegawai);
+        $datacontent["Total_Peg_Non_Jab"] = $this->db->where(["Kd_Jabatan" => NULL])->count_all_results($this->pegawai);
 
         $this->load->view('templates/admin/header', $dataheader); // Header
         $this->load->view('pages/admin/v_dashboard', $datacontent); // Content
