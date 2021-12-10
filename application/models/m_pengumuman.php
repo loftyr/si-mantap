@@ -11,4 +11,11 @@ class m_pengumuman extends CI_Model
 
         return $this->db->get($this->table, $limit, $start)->result();
     }
+
+    public function get_data_key($limit, $start, $where)
+    {
+        $this->db->where($where);
+        $this->db->order_by('Create_at', 'DESC');
+        return $this->db->get($this->table, $limit, $start)->result();
+    }
 }

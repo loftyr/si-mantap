@@ -100,7 +100,7 @@
                         <div class="icon">
                             <i class="fas fa-bookmark"></i>
                         </div>
-                        <a href="<?= base_url("PortalAdmin/Jabatan") ?>" class="small-box-footer">
+                        <a href="<?= base_url("PortalAdmin/Data-Pegawai") ?>" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -112,14 +112,14 @@
                     <!-- small card -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3><?= @$Total_Peg_Non_Jab ?></h3>
+                            <h3><?= @$Total_Jab_Kosong ?></h3>
 
-                            <p>Total Pegawai yang Tidak Memiliki Jabatan</p>
+                            <p>Total Jabatan yang Kosong</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-bookmark"></i>
                         </div>
-                        <a href="javascript:void(0)" class="small-box-footer">
+                        <a href="javascript:void(0)" class="small-box-footer viewJabKosong">
                             More info <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -130,3 +130,37 @@
         </div>
     </section>
 </div>
+
+<!-- Modal Jabtan Kosong -->
+<div class="modal fade" id="modal_jab" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Jabatan Kosong</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered costum-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 60px;" data-text="">No</th>
+                            <th class="text-center" data-text="Kode Jabatan">Kode Jabatan</th>
+                            <th class="text-center" data-text="Nama Jabatan">Nama Jabatan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body_tbl_jab">
+                        <!--  -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

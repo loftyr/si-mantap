@@ -42,8 +42,15 @@ class Pengumuman extends CI_Controller
 
     public function loadRecord()
     {
+        $Cari = $this->input->post("Cari");
+        $Where = ["Judul LIKE" => '%' . $Cari . '%'];
+
         $config['base_url']     = base_url() . 'Pengumuman/index';
-        $config['total_rows']   = $this->db->get("tbl_pengumuman")->num_rows();
+        if ($Cari) {
+            $config['total_rows']   = $this->db->get_where("tbl_pengumuman", $Where)->num_rows();
+        } else {
+            $config['total_rows']   = $this->db->get("tbl_pengumuman")->num_rows();
+        }
         $config['per_page']     = 10;
         $config['uri_segment']  = 3;
         $pilih                  = $config['total_rows'] / $config['per_page'];
@@ -72,7 +79,12 @@ class Pengumuman extends CI_Controller
 
         $this->pagination->initialize($config);
         $data['page']       = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data['result']     = $this->m_pengumuman->get_data($config['per_page'], $data['page']);
+        if ($Cari) {
+            $data['result']     = $this->m_pengumuman->get_data_key($config['per_page'], $data['page'], $Where);
+        } else {
+            $data['result']     = $this->m_pengumuman->get_data($config['per_page'], $data['page']);
+        }
+
         $data['pagination'] = $this->pagination->create_links();
 
         echo json_encode($data);

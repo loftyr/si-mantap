@@ -29,7 +29,7 @@ class Dashboard extends CI_Controller
         $dataheader["_uri"] = "PortalAdmin";
 
         /** Data Footer */
-        $datafooter['Js']       = ""; // Costum JavaScript
+        $datafooter['Js']       = "s_dashboard.js"; // Costum JavaScript
 
         /** Data Content */
         $datacontent["_uri"] = "PortalAdmin";
@@ -37,7 +37,10 @@ class Dashboard extends CI_Controller
         $datacontent["Total_PNS_Pria"] = $this->db->where(["Jk" => "Laki-Laki"])->count_all_results($this->pegawai);
         $datacontent["Total_PNS_Wanita"] = $this->db->where(["Jk" => "Perempuan"])->count_all_results($this->pegawai);
         $datacontent["Total_Peg_Jab"] = $this->db->where(["Kd_Jabatan !=" => NULL])->count_all_results($this->pegawai);
-        $datacontent["Total_Peg_Non_Jab"] = $this->db->where(["Kd_Jabatan" => NULL])->count_all_results($this->pegawai);
+
+        $this->db->select("A.*");
+        $this->db->join($this->pegawai . " B", "A.Kd_Jabatan = B.Kd_Jabatan", "LEFT");
+        $datacontent["Total_Jab_Kosong"] = $this->db->where(["B.Kd_Jabatan" => NULL])->count_all_results("tbl_jabatan A");
 
         $this->load->view('templates/admin/header', $dataheader); // Header
         $this->load->view('pages/admin/v_dashboard', $datacontent); // Content
@@ -50,5 +53,17 @@ class Dashboard extends CI_Controller
         session_destroy();
 
         redirect(base_url('Login'), 'refresh');
+    }
+
+    public function getJabKosong()
+    {
+        $this->db->select("A.*");
+        $this->db->join($this->pegawai . " B", "A.Kd_Jabatan = B.Kd_Jabatan", "LEFT");
+        $query = $this->db->get_where("tbl_jabatan A", ["B.Kd_Jabatan" => NULL])->result_array();
+
+        $result['Status']  = true;
+        $result['Pesan']   = '';
+        $result['Data']    = $query;
+        echo json_encode($result);
     }
 }

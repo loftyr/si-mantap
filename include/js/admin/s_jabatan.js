@@ -100,7 +100,7 @@ function initTable() {
         "ajax": {
             "url": _url + "getData",
             "type": "POST",
-            // "data": { Status: Status, Kelas: Kelas }
+            // "data": { paramJab: paramJab }
         },
 
         "columnDefs": [
@@ -183,7 +183,6 @@ $(document).on('click', '.btnUbah_1', function () {
             $('#Kd_Jabatan').val(data[0].Kd_Jabatan);
             $('#Nama_Jabatan').val(data[0].Nama);
             $('#Keterangan').val(data[0].Keterangan);
-
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // Hide Loading

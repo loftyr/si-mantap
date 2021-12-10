@@ -28,8 +28,40 @@
                     <!--  -->
                     <h3 class="card-title"><strong><?= @$Judul ?></strong></h3>
                 </div>
+
                 <div class="card-body">
                     <!--  -->
+                    <div class="card card-outline card-primary ml-1 mr-1">
+                        <div class="card-header">
+                            <p class="card-title"><strong>Filter Pencarian</strong></p>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <!--  -->
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12">
+                                    <form action="<?= base_url("Pengumuman") ?>" method="GET">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="Cari" name="Cari" placeholder="Cari Pengumuman" required>
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--  -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+
+                    <!-- Card Filter -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div id="data_paging" style="min-height: 450px;">
