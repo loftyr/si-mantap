@@ -113,6 +113,18 @@
                                 <p>Pengumuman</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url("Portal-Kegiatan") ?>" class="nav-link <?= @$Portal_Kegiatan ?>">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>Portal Kegiatan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url("Portal-Aula") ?>" class="nav-link <?= @$Portal_Aula ?>">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>Portal Aula</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
