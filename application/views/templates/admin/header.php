@@ -177,7 +177,7 @@
                         <li class="nav-item">
                             <a href="<?= base_url($_uri . "/Aula") ?>" class="nav-link <?= @$Aula ?>">
                                 <i class="nav-icon fas fa-file-alt"></i>
-                                <p>Aula</p>
+                                <p>Pemakaian Aula</p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -24,7 +24,7 @@
             <!-- Content -->
 
             <!-- Small Box (Stat card) -->
-            <h5 class="mb-2 mt-4">Statik Pegawai</h5>
+            <h5 class="mb-2 mt-4">Statistik Pegawai</h5>
             <div class="row">
                 <!-- Piece Card -->
                 <div class="col-lg-3 col-6">
@@ -86,7 +86,7 @@
             <!-- /.row -->
 
             <!-- Static Jabatan -->
-            <h5 class="mb-2 mt-4">Statik Jabatan Pegawai</h5>
+            <h5 class="mb-2 mt-4">Statistik Jabatan Pegawai</h5>
             <div class="row">
                 <!-- Piece Card -->
                 <div class="col-lg-3 col-6">
@@ -125,6 +125,51 @@
                     </div>
                 </div>
                 <!-- /Piece Card -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Static Jabatan -->
+            <h5 class="mb-2 mt-4">Pemakaian Aula</h5>
+            <div class="row">
+                <!-- Piece Card -->
+                <div class="col-lg-6">
+                    <!-- small card -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <!--  -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Pemakaian Aula (<?= longdate_indo(@$Aula[0]["Tanggal"]) ?>)</strong></p>
+                                        <p><?= @$Aula[0]["Aula"] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Keterangan</strong></p>
+                                        <?php if (strlen($Aula[0]["Keterangan"]) > 180) : ?>
+                                            <p><?= substr(@$Aula[0]["Keterangan"], 0, 180) ?> . . . . .</p>
+                                        <?php else :  ?>
+                                            <p><?= @$Aula[0]["Keterangan"] ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="icon">
+                            <!-- <i class="fas fa-bookmark"></i> -->
+                        </div>
+                        <a href="<?= base_url("PortalAdmin/Aula") ?>" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- /Piece Card -->
+
             </div>
             <!-- /.row -->
         </div>

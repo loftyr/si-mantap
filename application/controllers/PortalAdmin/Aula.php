@@ -22,7 +22,7 @@ class Aula extends CI_Controller
     public function index()
     {
         /** Data Header */
-        $dataheader['Judul']    = "Aula";
+        $dataheader['Judul']    = "Pemakaian Aula";
         $dataheader['Css']      = ""; // Costum CSS
         /** Data Menu */
         // $dataheader['Parent']['']   = 'menu-open';
@@ -77,7 +77,7 @@ class Aula extends CI_Controller
             $row[] = $Link;
             $row[] = formatTanggal($field->Tanggal);
             $row[] = $field->Aula;
-            $row[] = $Keterangan;
+            $row[] = $field->Keterangan;
             $row[] = $button;
 
             $data[] = $row;

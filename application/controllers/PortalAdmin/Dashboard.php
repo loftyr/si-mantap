@@ -37,6 +37,7 @@ class Dashboard extends CI_Controller
         $datacontent["Total_PNS_Pria"] = $this->db->where(["Jk" => "Laki-Laki"])->count_all_results($this->pegawai);
         $datacontent["Total_PNS_Wanita"] = $this->db->where(["Jk" => "Perempuan"])->count_all_results($this->pegawai);
         $datacontent["Total_Peg_Jab"] = $this->db->where(["Kd_Jabatan !=" => NULL])->count_all_results($this->pegawai);
+        $datacontent["Aula"] = $this->db->order_by("Tanggal", "ASC")->get_where("tbl_aula", ["Tanggal >=" => date("Y-m-d")])->result_array();
 
         $this->db->select("A.*");
         $this->db->join($this->pegawai . " B", "A.Kd_Jabatan = B.Kd_Jabatan", "LEFT");

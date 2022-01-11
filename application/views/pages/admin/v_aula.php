@@ -46,13 +46,13 @@
                         </div>
                     </div> -->
                     <!--  -->
-                    <table id="tbl_1" class="table table-bordered costum-hover w-100">
+                    <table id="tbl_1" class="table table-bordered costum-hover">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 250px;" data-text="Nomor">Nomor</th>
-                                <th class="text-center" style="width: 250px;" data-text="Tanggal">Tanggal</th>
-                                <th class="text-center" style="width: 250px;" data-text="Aula">Aula</th>
-                                <th class="text-center" style="width: 150px;" data-text="Keterangan">Keterangan</th>
+                                <th class="text-center" style="width: 100px;" data-text="Tanggal">Tanggal</th>
+                                <th class="text-center" style="width: 250px;" data-text="Aula">Pemakaian Aula</th>
+                                <th class="text-center" style="width: 400px;" data-text="Keterangan">Keterangan</th>
                                 <th class="text-center" style="width: 80px;">Aksi</th>
                             </tr>
                         </thead>
@@ -90,8 +90,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="Aula">Aula</label>
-                                    <input type="text" class="form-control" id="Aula" name="Aula" placeholder="Input Aula">
+                                    <label for="Aula">Pemakaian Aula</label>
+                                    <input type="text" class="form-control" id="Aula" name="Aula" placeholder="Input Pemakaian Aula">
                                 </div>
                             </div>
 
@@ -120,11 +120,20 @@
                         </div> <!-- End Class row -->
                     </div> <!-- End Class callout -->
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="Keterangan">Keterangan</label>
                                 <textarea id="Keterangan"></textarea>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="Keterangan">Keterangan</label>
+                                <textarea class="form-control" rows="2" id="Keterangan" name="Keterangan" placeholder="Enter ..."></textarea>
                             </div>
                         </div>
                     </div>

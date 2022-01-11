@@ -17,11 +17,11 @@ $('.btnRefresh_1').click(function () {
 });
 
 $(document).ready(function () {
-    setckEditor('Keterangan', $('#form_1').width(), '300');
+    // setckEditor('Keterangan', $('#form_1').width(), '300');
     //Reset Modal 
     $('#modal_1').on('hidden.bs.modal', function (e) {
         $('#form_1').trigger('reset');
-        CKEDITOR.instances.Keterangan.setData("");
+        // CKEDITOR.instances.Keterangan.setData("");
     });
 
     initTable();
@@ -34,7 +34,7 @@ $(document).ready(function () {
         var arr = new FormData(Data);
         var url;
 
-        arr.append('Keterangan', CKEDITOR.instances.Keterangan.getData());
+        // arr.append('Keterangan', CKEDITOR.instances.Keterangan.getData());
 
         if (method_1 == 'Add') {
             url = _url + 'saveData/Tambah';
@@ -106,11 +106,11 @@ function initTable() {
             }
         ],
 
-        // scrollX: true,
-        // fixedColumns: {
-        //     leftColumns: 0,
-        //     rightColumns: 1
-        // },
+        scrollX: true,
+        fixedColumns: {
+            leftColumns: 0,
+            rightColumns: 1
+        },
         columnDefs: [{
             targets: 4,
             className: 'text-center'
@@ -179,7 +179,8 @@ $(document).on('click', '.btnUbah_1', function () {
             $('#Nomor').val(data[0].Nomor);
             $('#Kegiatan').val(data[0].Kegiatan);
             $('#val_Tanggal').val(Tanggal);
-            CKEDITOR.instances.Keterangan.setData(data[0].Keterangan);
+            $('#Keterangan').val(data[0].Keterangan);
+            // CKEDITOR.instances.Keterangan.setData(data[0].Keterangan);
 
         },
         error: function (jqXHR, textStatus, errorThrown) {

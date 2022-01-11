@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid black;"><strong>Aula</strong></p>
+                                <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid black;"><strong>Pemakaian Aula</strong></p>
                                 <p><?= @$Data[0]["Aula"] ?></p>
                             </div>
                         </div>

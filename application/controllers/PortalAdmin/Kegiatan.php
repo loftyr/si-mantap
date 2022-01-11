@@ -77,7 +77,7 @@ class Kegiatan extends CI_Controller
             $row[] = $Link;
             $row[] = formatTanggal($field->Tanggal);
             $row[] = $field->Kegiatan;
-            $row[] = $Keterangan;
+            $row[] = $field->Keterangan;
             $row[] = $button;
 
             $data[] = $row;
