@@ -140,8 +140,13 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Pemakaian Aula (<?= longdate_indo(@$Aula[0]["Tanggal"]) ?>)</strong></p>
-                                        <p><?= @$Aula[0]["Aula"] ?></p>
+                                        <?php if (isset($Aula)) : ?>
+                                            <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Pemakaian Aula (<?= longdate_indo(@$Aula[0]["Tanggal"]) ?>)</strong></p>
+                                            <p><?= @$Aula[0]["Aula"] ?></p>
+                                        <?php else : ?>
+                                            <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Tidak Ditemukan Pemakaian Aula</strong></p>
+                                            <p><?= @$Aula[0]["Aula"] ?></p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -149,14 +154,21 @@
                             <!--  -->
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Keterangan</strong></p>
-                                        <?php if (strlen($Aula[0]["Keterangan"]) > 180) : ?>
-                                            <p><?= substr(@$Aula[0]["Keterangan"], 0, 180) ?> . . . . .</p>
-                                        <?php else :  ?>
-                                            <p><?= @$Aula[0]["Keterangan"] ?></p>
-                                        <?php endif; ?>
-                                    </div>
+                                    <?php if (isset($Aula)) : ?>
+                                        <div class="form-group">
+                                            <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Keterangan</strong></p>
+                                            <?php if (strlen(@$Aula[0]["Keterangan"]) > 180) : ?>
+                                                <p><?= substr(@$Aula[0]["Keterangan"], 0, 180) ?> . . . . .</p>
+                                            <?php else :  ?>
+                                                <p><?= @$Aula[0]["Keterangan"] ?></p>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="form-group">
+                                            <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Tidak Ditemukan Keterangan</strong></p>
+                                        </div>
+                                    <?php endif; ?>
+
                                 </div>
                             </div>
                         </div>
