@@ -140,7 +140,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <?php if (empty($Aula)) : ?>
+                                        <?php if (isset($Aula[0]["Tanggal"])) : ?>
                                             <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Pemakaian Aula (<?= longdate_indo(@$Aula[0]["Tanggal"]) ?>)</strong></p>
                                             <p><?= @$Aula[0]["Aula"] ?></p>
                                         <?php else : ?>
@@ -154,7 +154,7 @@
                             <!--  -->
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <?php if (empty($Aula)) : ?>
+                                    <?php if (empty($Aula[0]["Keterangan"])) : ?>
                                         <div class="form-group">
                                             <p style="font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid white;"><strong>Keterangan</strong></p>
                                             <?php if (strlen(@$Aula[0]["Keterangan"]) > 180) : ?>
